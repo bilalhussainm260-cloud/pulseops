@@ -1,0 +1,12 @@
+
+groups:
+  - name: pulseops_alerts
+    rules:
+      - alert: PulseOpsDown
+        expr: up{job="pulseops"} == 0
+        for: 30s
+        labels:
+          severity: critical
+        annotations:
+          summary: "PulseOps API is down"
+          description: "Prometheus cannot reach the PulseOps API for 30 seconds."
